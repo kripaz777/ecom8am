@@ -1,6 +1,8 @@
 from django.shortcuts import render
 from .models import *
 from django.views.generic import View
+from django.contrib import messages
+from django.contrib.auth.models import User
 # Create your views here.
 
 class BaseView(View):
@@ -56,3 +58,35 @@ class SearchView(BaseView):
 			self.view['search_product'] = Product.objects.filter(name__icontains = query)
 
 		return render(request,'shop-search-result.html',self.view)
+
+def signup(request):
+	if request.method == "POST":
+		first_name = request.POST['fname']
+		last_name = request.POST['lname']
+		username = request.POST['username']
+		email = request.POST['email']
+		password = request.POST['password']
+		cpassword = request.POST['cpassword']
+		if password == cpassword:
+			if User.objects.filter(username = username).exists():
+				messages.error(request,'The username is already used')
+				return render(request,'shop-standart-forms.html')
+
+			elif User.objects.filter(email = email).exists():
+				
+				messages.error(request,'The email is already used')
+				return render(request,'shop-standart-forms.html')
+			else:
+				user = User.objects.create_user(
+					first_name = first_name,
+					last_name = last_name,
+					username = username,
+					email = email,
+					password = password
+					)
+				user.save()
+		else:
+			messages.error(request,'The password does not match')
+			return render(request,'shop-standart-forms.html')
+	return render(request,'shop-standart-forms.html')
+
