@@ -366,37 +366,15 @@ Purchase Premium Metronic Admin Theme: http://themeforest.net/item/metronic-resp
                 </li>
               </ul>
             </li>
-            <li class="dropdown">
-              <a class="dropdown-toggle" data-toggle="dropdown" data-target="#" href="javascript:;">
-                Pages 
-                
-              </a>
-                
-              <ul class="dropdown-menu">
-                <li class="active"><a href="shop-index.html">Home Default</a></li>
-                <li><a href="shop-index-header-fix.html">Home Header Fixed</a></li>
-                <li><a href="shop-index-light-footer.html">Home Light Footer</a></li>
-                <li><a href="shop-product-list.html">Product List</a></li>
-                <li><a href="shop-search-result.html">Search Result</a></li>
-                <li><a href="shop-item.html">Product Page</a></li>
-                <li><a href="shop-shopping-cart-null.html">Shopping Cart (Null Cart)</a></li>
-                <li><a href="shop-shopping-cart.html">Shopping Cart</a></li>
-                <li><a href="shop-checkout.html">Checkout</a></li>
-                <li><a href="shop-about.html">About</a></li>
-                <li><a href="shop-contacts.html">Contacts</a></li>
-                <li><a href="shop-account.html">My account</a></li>
-                <li><a href="shop-wishlist.html">My Wish List</a></li>
-                <li><a href="shop-goods-compare.html">Product Comparison</a></li>
-                <li><a href="shop-standart-forms.html">Standart Forms</a></li>
-                <li><a href="shop-faq.html">FAQ</a></li>
-                <li><a href="shop-privacy-policy.html">Privacy Policy</a></li>
-                <li><a href="shop-terms-conditions-page.html">Terms &amp; Conditions</a></li>
-              </ul>
-            </li>
             
             
-            <li><a href="http://themeforest.net/item/metronic-responsive-admin-dashboard-template/4021469?ref=keenthemes&amp;utm_source=download&amp;utm_medium=banner&amp;utm_campaign=metronic_frontend_freebie" target="_blank">Admin theme</a></li>
-
+            {% if user.is_authenticated %}
+            <li><a href="">{{user.username}}</a></li>
+            <li><a href="/account/logout/">Logout</a></li>
+            {% else %}
+            <li><a href="/account/login">Login</a></li>
+            <li><a href="/signup">Signup</a></li>
+            {% endif %}
             <!-- BEGIN TOP SEARCH -->
             <li class="menu-search">
               <span class="sep"></span>
