@@ -1,6 +1,6 @@
 from django.urls import path, include
 from rest_framework import routers, serializers, viewsets
-from .views import ProductViewSet,ProductFilterView
+from .views import ProductViewSet,ProductFilterView,ProductCRUDViewSet
 
 router = routers.DefaultRouter()
 router.register(r'products', ProductViewSet)

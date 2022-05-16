@@ -200,6 +200,7 @@ class ProductCRUDViewSet(APIView):
 		return Response(serializer.errors,status = status.HTTP_400_BAD_REQUEST)
 
 	def put(self,request,pk):
+		product = self.get_object(pk)
 		serializer = ProductSerializer(product,data = request.data)
 		if serializer.is_valid():
 			serializer.save()
@@ -207,6 +208,7 @@ class ProductCRUDViewSet(APIView):
 		return Response(serializer.data,status = status.HTTP_400_BAD_REQUEST)
 
 	def delete(self,request,pk):
+		product = self.get_object(pk)
 		product.delete()
 		return Response(status = status.HTTP_204_NO_CONTENT)
 
